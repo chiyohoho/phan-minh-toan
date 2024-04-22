@@ -82,13 +82,13 @@ function App() {
 
 
   return (
-    <Box pt={100} className='bg-white dark:bg-black' height={'100vh'}>
+    <Box pt={100} className='bg-white dark:bg-black' height={'100vh'} px={5}>
       <Center>
         <ColorModeToggle />
       </Center>
 
-      <Flex justifyContent={'center'} alignItems={'center'} gap={10}>
-        <Box className='text-black dark:text-white' w={400} mt={10} border={'1px solid #ccc'} rounded={10} px={5} pb={5}>
+      <Flex mt={10} flexDir={['column', 'column', 'row', 'row', 'row', 'row']} justifyContent={'center'} alignItems={['center', 'center', 'initial', 'initial', 'initial', 'initial']} gap={5} >
+        <Box className='text-black dark:text-white' w={[300, 350, 400, 400, 400, 400]} border={'1px solid #ccc'} rounded={10} px={5} pb={5}>
           <Text my={5} fontWeight={700}>Convert Money</Text>
           <Box mb={5}>
             <Text fontWeight={500}>USD</Text>
@@ -101,7 +101,7 @@ function App() {
           </Box>
         </Box>
 
-        <Box className='text-black dark:text-white' w={400} mt={20} border={'1px solid #ccc'} rounded={10} px={5} pb={5}>
+        <Box className='text-black dark:text-white' w={[300, 350, 400, 400, 400, 400]} border={'1px solid #ccc'} rounded={10} px={5} pb={5}>
           <Text my={5} fontWeight={700}>Transfer Money</Text>
           <Box mb={5}>
             <Text fontWeight={500}>UserA balance: {userA}</Text>
