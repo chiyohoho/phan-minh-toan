@@ -1,0 +1,22 @@
+TypeScript Typing Usage: 
+    While TypeScript is used, the typing could be more explicit and leveraged better. For instance, the getPriority function accepts a parameter blockchain of type any, which undermines TypeScript's type checking capabilities.
+
+Unnecessary Recalculation: 
+    The getPriority function is called repetitively for each element in the balances array, leading to unnecessary computation when elements share the same blockchain.
+
+Using Index as Key: 
+    the array index as the key for list items (<li key={index}>) can lead to performance issues, especially when the order of items changes. React may re-render all items in the list instead of only those that have changed.
+
+Redundant Formatting: 
+    The formattedBalances array is created by mapping over sortedBalances to format each balance, but this formatting could be combined with the initial mapping to avoid redundant computations.
+
+To improve the code:
+
+Optimize getPriority Function: 
+    Instead of repeatedly calling getPriority for each element, you could precompute a mapping of blockchain types to their respective priorities. This would eliminate redundant calculations.
+
+Use a Stable Key for List Items: 
+    If possible, use a unique and stable identifier for each item in the sortedBalances array instead of the array index. This helps React optimize re-renders by identifying which items have changed.
+
+Avoid Unnecessary Formatting: 
+    Instead of creating a separate array (formattedBalances) for formatted balances, you can format the balances directly within the map function used to generate the rows array.
