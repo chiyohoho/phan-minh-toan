@@ -1,7 +1,8 @@
 import {
-  Box, Button, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure, useToast,
+  Box, Button, Center, Flex, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure, useToast,
 } from '@chakra-ui/react'
 import { useState } from 'react'
+import ColorModeToggle from './darkmode'
 
 function App() {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -81,36 +82,42 @@ function App() {
 
 
   return (
-    <Box mt={100}>
-      <Box w={400} mx={'auto'} border={'1px solid #ccc'} rounded={10} px={5} pb={5}>
-        <Text my={5} fontWeight={700}>Convert Money</Text>
-        <Box mb={5}>
-          <Text fontWeight={500}>USD</Text>
-          <Input value={valueUSD} type='number' onChange={(e) => handleOnChangeValueUSD(e)} placeholder='enter a number...' w={'100%'} />
+    <Box pt={100} className='bg-white dark:bg-black' height={'100vh'}>
+      <Center>
+        <ColorModeToggle />
+      </Center>
+
+      <Flex justifyContent={'center'} alignItems={'center'} gap={10}>
+        <Box className='text-black dark:text-white' w={400} mt={10} border={'1px solid #ccc'} rounded={10} px={5} pb={5}>
+          <Text my={5} fontWeight={700}>Convert Money</Text>
+          <Box mb={5}>
+            <Text fontWeight={500}>USD</Text>
+            <Input value={valueUSD} type='number' onChange={(e) => handleOnChangeValueUSD(e)} placeholder='enter a number...' w={'100%'} />
+          </Box>
+
+          <Box>
+            <Text fontWeight={500}>VND</Text>
+            <Input value={valueVND} type='number' onChange={(e) => handleOnChangeValueVND(e)} placeholder='enter a number...' w={'100%'} />
+          </Box>
         </Box>
 
-        <Box>
-          <Text fontWeight={500}>VND</Text>
-          <Input value={valueVND} type='number' onChange={(e) => handleOnChangeValueVND(e)} placeholder='enter a number...' w={'100%'} />
-        </Box>
-      </Box>
+        <Box className='text-black dark:text-white' w={400} mt={20} border={'1px solid #ccc'} rounded={10} px={5} pb={5}>
+          <Text my={5} fontWeight={700}>Transfer Money</Text>
+          <Box mb={5}>
+            <Text fontWeight={500}>UserA balance: {userA}</Text>
+            <Input value={valueSendUserA} type='number' onChange={(e) => setValueSendUserA(e.target.value)} placeholder='enter a number...' w={'100%'} />
+          </Box>
 
-      <Box w={400} mt={20} mx={'auto'} border={'1px solid #ccc'} rounded={10} px={5} pb={5}>
-        <Text my={5} fontWeight={700}>Transfer Money</Text>
-        <Box mb={5}>
-          <Text fontWeight={500}>UserA balance: {userA}</Text>
-          <Input value={valueSendUserA} type='number' onChange={(e) => setValueSendUserA(e.target.value)} placeholder='enter a number...' w={'100%'} />
-        </Box>
+          <Button onClick={handleConfirmBeforeTransfer} mb={5} colorScheme='teal'>
+            Transfer
+          </Button>
 
-        <Button onClick={handleConfirmBeforeTransfer} mb={5} colorScheme='teal'>
-          Transfer
-        </Button>
-
-        <Box>
-          <Text fontWeight={500}>UserB balance: {userB}</Text>
-          <Input value={valueSendUserB} type='number' onChange={(e) => setValueSendUserB(e.target.value)} placeholder='enter a number...' w={'100%'} />
+          <Box>
+            <Text fontWeight={500}>UserB balance: {userB}</Text>
+            <Input value={valueSendUserB} type='number' onChange={(e) => setValueSendUserB(e.target.value)} placeholder='enter a number...' w={'100%'} />
+          </Box>
         </Box>
-      </Box>
+      </Flex>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
